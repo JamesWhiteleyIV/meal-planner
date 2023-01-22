@@ -1,5 +1,5 @@
 use anyhow::Result;
-use rusqlite::{params, Connection};
+use rusqlite::Connection;
 use serde::{Serialize, Deserialize};
 
 
@@ -86,7 +86,7 @@ pub fn delete(conn: &Connection, tag_id: i64) -> Result<()> {
 #[cfg(test)]
 mod tests {
     use anyhow::Result;
-    use rusqlite::{params, Connection};
+    use rusqlite::Connection;
     use crate::tag;
 
     #[test]

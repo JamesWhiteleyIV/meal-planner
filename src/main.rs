@@ -2,7 +2,6 @@
 
 use anyhow::Result;
 use rusqlite::Connection;
-use serde::{Serialize, Deserialize};
 
 pub const DATABASE_FILENAME: &str = "foodbuddy.db";
 
@@ -29,7 +28,6 @@ impl GroceryList {
         } 
     }
 }
-*/
 
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -121,7 +119,6 @@ fn get_meal_plan_recipes(conn: &Connection, meal_plan_id: i64) -> Result<()> {
     Ok(())
 }
 
-/*
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Amount(f64);
 
@@ -170,20 +167,6 @@ fn add_ingredient_to_recipe(conn: &Connection, ingredient_id: i64, recipe_id: i6
         (ingredient_id, recipe_id, unit_id, amount),
         )?;
     Ok(())
-}
-
-// create new empty recipe with given name
-fn create_recipe(conn: &Connection, name: &str) -> Result<i64> {
-    match conn.execute(
-        "INSERT OR IGNORE INTO recipes (name) VALUES (?1);",
-        (name,),
-        ) {
-        Ok(_) => {
-            let id = conn.last_insert_rowid();
-            Ok(id)
-        },
-        Err(e) => Err(e.into())
-    }
 }
 
 fn get_recipe(conn: &Connection, recipe_id: i64) -> Result<Recipe> {
@@ -258,6 +241,7 @@ MealPlan menu
 mod unit;
 mod tag;
 mod ingredient;
+mod recipe;
 
 
 fn main() -> Result<()> {
@@ -267,17 +251,8 @@ fn main() -> Result<()> {
     unit::initialize(&conn)?;
     tag::initialize(&conn)?;
     ingredient::initialize(&conn)?;
+    recipe::initialize(&conn)?;
    
-    /*
-    create_meal_plans_table(&conn)?;
-    create_meal_plan_recipe_table(&conn)?;
-    create_recipes_table(&conn)?;
-    create_recipe_ingredient_table(&conn)?;
-
-    let recipe = get_recipe(&conn, 1)?; 
-    println!("{:#?}", recipe);
-    */
-
     Ok(())
 }
 

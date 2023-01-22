@@ -1,10 +1,9 @@
 use anyhow::Result;
 use rusqlite::Connection;
 use serde::{Serialize, Deserialize};
-
-
-// TODO
 use crate::unit::Unit;
+
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Nutrition {
     pub unit: Unit,
@@ -32,12 +31,11 @@ const DEFAULT_INGREDIENTS: &'static [&str] = &[
 ];
 
 
-
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Ingredient {
     pub id: i64,
     pub name: String, // e.g. carrot, potato
-    pub nutrition: Option<Nutrition>
+    pub nutrition: Option<Nutrition> // TODO
 }
 
 
