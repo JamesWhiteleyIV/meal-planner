@@ -1,8 +1,8 @@
 // https://docs.rs/rusqlite/0.28.0/rusqlite/struct.Statement.html
 
 use anyhow::Result;
-use rusqlite::{params, Connection};
-
+use rusqlite::Connection;
+use serde::{Serialize, Deserialize};
 
 pub const DATABASE_FILENAME: &str = "foodbuddy.db";
 
@@ -30,102 +30,6 @@ impl GroceryList {
     }
 }
 */
-
-use serde::{Serialize, Deserialize};
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct Unit {
-    pub id: i64,
-    pub name: String
-}
-
-
-
-fn create_units_table(conn: &Connection) -> Result<()> {
-    println!("creating units table");
-    conn.execute(
-        "CREATE TABLE IF NOT EXISTS units (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL, 
-        UNIQUE (name)
-    )",
-    (), 
-    )?;
-
-    Ok(())
-}
-
-fn create_unit(conn: &Connection, name: &str) -> Result<()> {
-    conn.execute(
-        "INSERT OR IGNORE INTO units (name) VALUES (?1);",
-        (name,),
-        )?;
-    Ok(())
-}
-
-fn get_units(conn: &Connection) -> Result<Vec<Unit>> {
-    let mut stmt = conn.prepare("SELECT id, name FROM units")?;
-    let rows = stmt.query_map([], |row| {
-        Ok(Unit {
-            id: row.get(0)?,
-            name: row.get(1)?
-        })
-    })?;
-
-    Ok(rows.into_iter().flatten().collect())
-}
-
-fn delete_unit(conn: &Connection, unit_id: i64) -> Result<()> {
-    conn.execute("DELETE FROM units WHERE id=(?1);", (unit_id,),)?;
-    Ok(())
-}
-
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct Tag {
-    pub id: i64,
-    pub name: String
-}
-
-fn create_tags_table(conn: &Connection) -> Result<()> {
-    println!("creating tags table");
-    conn.execute(
-        "CREATE TABLE IF NOT EXISTS tags (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL, 
-        UNIQUE (name)
-    )",
-    (), 
-    )?;
-
-    Ok(())
-}
-
-// creates Tag in database if name is unique
-fn create_tag(conn: &Connection, name: &str) -> Result<()> {
-    conn.execute(
-        "INSERT OR IGNORE INTO tags (name) VALUES (?1);",
-        (name,),
-        )?;
-    Ok(())
-}
-
-fn get_tags(conn: &Connection) -> Result<Vec<Tag>> {
-    let mut stmt = conn.prepare("SELECT id, name FROM tags")?;
-    let rows = stmt.query_map([], |row| {
-        Ok(Tag {
-            id: row.get(0)?,
-            name: row.get(1)?
-        })
-    })?;
-
-    Ok(rows.into_iter().flatten().collect())
-}
-
-fn delete_tag(conn: &Connection, tag_id: i64) -> Result<()> {
-    conn.execute("DELETE FROM tags WHERE id=(?1);", (tag_id,),)?;
-    Ok(())
-}
 
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -217,6 +121,7 @@ fn get_meal_plan_recipes(conn: &Connection, meal_plan_id: i64) -> Result<()> {
     Ok(())
 }
 
+/*
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Amount(f64);
 
@@ -225,7 +130,7 @@ pub struct Amount(f64);
 pub struct Recipe {
     pub id: i64,
     pub name: String, // e.g. carrot, potato
-    pub ingredients: Vec<(Ingredient, Amount, Unit)>
+    pub ingredients: Vec<(Ingredient, Amount, unit::Unit)>
 }
 
 fn create_recipes_table(conn: &Connection) -> Result<()> {
@@ -287,7 +192,7 @@ fn get_recipe(conn: &Connection, recipe_id: i64) -> Result<Recipe> {
         "SELECT ingredient_id, recipe_id, amount, unit_id, i.name, u.name, r.name FROM recipe_ingredient INNER JOIN ingredients i ON ingredient_id = i.id INNER JOIN units u ON unit_id = u.id INNER JOIN recipes r ON recipe_id = ? WHERE recipe_id=?;")?;
     let mut rows = stmt.query(rusqlite::params![recipe_id, recipe_id])?;
 
-    let mut ingredients: Vec<(Ingredient, Amount, Unit)> = Vec::new();
+    let mut ingredients: Vec<(Ingredient, Amount, unit::Unit)> = Vec::new();
     let mut recipe_name = "".to_string();
     while let Some(row) = rows.next()? {
         recipe_name = row.get(6)?;
@@ -295,7 +200,7 @@ fn get_recipe(conn: &Connection, recipe_id: i64) -> Result<Recipe> {
             id: row.get(0)?,
             name: row.get(4)?,
         };
-        let unit = Unit {
+        let unit = unit::Unit {
             id: row.get(3)?,
             name: row.get(5)?
         };
@@ -310,6 +215,7 @@ fn get_recipe(conn: &Connection, recipe_id: i64) -> Result<Recipe> {
     })
 
 }
+*/
 
 
 // get recipes (-> Vec<Recipe>)
@@ -325,35 +231,7 @@ fn get_recipe(conn: &Connection, recipe_id: i64) -> Result<Recipe> {
 // recipe_tags table
 // recipe_ingredients amount? table
 
-#[derive(Debug, Serialize, Deserialize)]
-pub struct Ingredient {
-    pub id: i64,
-    pub name: String, // e.g. carrot, potato
-    // TODO: pub nutrition: Nutrition
-}
 
-fn create_ingredients_table(conn: &Connection) -> Result<()> {
-    println!("creating ingredients table");
-    conn.execute(
-        "CREATE TABLE IF NOT EXISTS ingredients (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        UNIQUE(name)
-    )",
-    (), 
-    )?;
-
-    Ok(())
-}
-
-
-fn create_ingredient(conn: &Connection, name: &str) -> Result<()> {
-    conn.execute(
-        "INSERT OR IGNORE INTO ingredients (name) VALUES (?1);",
-        (name,),
-        )?;
-    Ok(())
-}
 
 // get ingredients (Vec<Ingredient>)
 // create ingredient (name)
@@ -377,90 +255,27 @@ MealPlan menu
  */
 
 
+mod unit;
+mod tag;
+mod ingredient;
+
+
 fn main() -> Result<()> {
-    let conn = Connection::open(DATABASE_FILENAME)?;
+    //let conn = Connection::open(DATABASE_FILENAME)?;
+    let conn = Connection::open_in_memory()?;
+
+    unit::initialize(&conn)?;
+    tag::initialize(&conn)?;
+    ingredient::initialize(&conn)?;
    
-    create_units_table(&conn)?;
-    create_tags_table(&conn)?;
-    create_ingredients_table(&conn)?;
+    /*
     create_meal_plans_table(&conn)?;
     create_meal_plan_recipe_table(&conn)?;
     create_recipes_table(&conn)?;
     create_recipe_ingredient_table(&conn)?;
 
-    create_unit(&conn, "oz")?;
-    create_unit(&conn, "lb")?;
-    create_unit(&conn, "g")?;
-    create_unit(&conn, "fl oz")?;
-    create_unit(&conn, "tsp")?;
-    create_unit(&conn, "Tbsp")?;
-    create_unit(&conn, "cup")?;
-    create_unit(&conn, "ml")?;
- 
-    create_tag(&conn, "instant pot")?;
-    create_tag(&conn, "oven")?;
-    create_tag(&conn, "pan")?;
-    create_tag(&conn, "pot")?;
-
-    create_ingredient(&conn, "apple")?;
-    create_ingredient(&conn, "carrot")?;
-    create_ingredient(&conn, "black beans")?;
-    create_ingredient(&conn, "top sirloin steak")?;
-    create_ingredient(&conn, "butter")?;
-    create_ingredient(&conn, "rosemary")?;
-
-    create_recipe(&conn, "top sirloin")?;
-    add_ingredient_to_recipe(&conn, 1, 1, 3, 10.0)?;
-    add_ingredient_to_recipe(&conn, 3, 1, 5, 2.3)?;
-    add_ingredient_to_recipe(&conn, 4, 1, 7, 0.5)?;
-
-
-    for t in get_units(&conn)? {
-        println!("{:#?}", t);
-    };
- 
-    /*
-    for t in get_tags(&conn)? {
-        println!("{:#?}", t);
-    };
-    */
-
     let recipe = get_recipe(&conn, 1)?; 
     println!("{:#?}", recipe);
-
-    //println!("{:#?}", recipe_id);
-
-
-    /*
-    conn.execute(
-        "CREATE TABLE IF NOT EXISTS ingredients (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        data JSON NOT NULL 
-    )",
-    (), // empty list of parameters.
-    )?;
-
-    conn.execute(
-        "CREATE TABLE IF NOT EXISTS ingredients (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        data JSON NOT NULL 
-    )",
-    (), // empty list of parameters.
-    )?;
-
-
-    let test = Test {
-        name: vec!["aaa".to_string(), "bbb".to_string(), "ccc".to_string()]
-    };
-
-    conn.execute(
-        "INSERT OR IGNORE INTO test (data) VALUES (?1);",
-        (serde_json::to_string(&test)?,),
-    )?;
-
-    //Unit::create_database_table(&conn)?;
-    //FoodItem::create_database_table(&conn)?;
-    //Recipe::create_database_table(&conn)?;
     */
 
     Ok(())

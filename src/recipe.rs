@@ -1,23 +1,5 @@
 use anyhow::Result;
 use rusqlite::{params, Connection};
-use crate::{DATABASE_FILENAME};
-use crate::food_item::FoodItem;
-
-
-#[derive(Debug, Clone)]
-pub struct Ingredient {
-    pub id: u64,
-    pub food_item: FoodItem,
-    pub amount: f64,  // e.g. 4, .5
-    pub unit: String // e.g. ml, fl oz, lbs
-}
-
-
-#[derive(Debug, Clone)]
-pub struct Tag {
-    pub id: u64,
-    pub name: String,
-}
 
 
 #[derive(Debug, Clone)]
