@@ -1,15 +1,13 @@
 from sqlalchemy.orm import Session
-
 import models, schemas
 
 
-'''
-def get_tags(db: Session, tag_id: int):
-    return db.query(models.Tag).filter(models.Tag.id == tag_id).first()
-'''
-
 def get_tags(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Tag).offset(skip).limit(limit).all()
+
+
+def get_tag_by_name(db: Session, name: str):
+    return db.query(models.Tag).filter(models.Tag.name == name).first()
 
 
 def create_tag(db: Session, tag: schemas.TagCreate):
@@ -18,6 +16,22 @@ def create_tag(db: Session, tag: schemas.TagCreate):
     db.commit()
     db.refresh(db_tag)
     return db_tag
+
+
+def get_ingredients(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(models.Ingredient).offset(skip).limit(limit).all()
+
+
+def get_ingredient_by_name(db: Session, name: str):
+    return db.query(models.Ingredient).filter(models.Ingredient.name == name).first()
+
+
+def create_ingredient(db: Session, ingredient: schemas.IngredientCreate):
+    db_ingredient = models.Ingredient(**ingredient.dict())
+    db.add(db_ingredient)
+    db.commit()
+    db.refresh(db_ingredient)
+    return db_ingredient
 
 
 '''

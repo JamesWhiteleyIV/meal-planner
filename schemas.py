@@ -13,15 +13,12 @@ class TagCreate(TagBase):
 class Tag(TagBase):
     id: int
 
+    class Config:
+        orm_mode = True
+
 
 class IngredientBase(BaseModel):
     name: str
-
-class IngredientCreate(IngredientBase):
-    pass
-
-class Ingredient(IngredientBase):
-    id: int
     amount: float | None
     unit: str | None
     calories_kcal: float | None
@@ -35,6 +32,14 @@ class Ingredient(IngredientBase):
     sugar_g: float | None
     cholesterol_mg: float | None
 
+class IngredientCreate(IngredientBase):
+    pass
+
+class Ingredient(IngredientBase):
+    id: int
+
+    class Config:
+        orm_mode = True
 
 
 class RecipeBase(BaseModel):
