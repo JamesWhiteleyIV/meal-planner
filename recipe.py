@@ -7,51 +7,6 @@ from tag import Tag
 api_router = APIRouter(prefix="/recipes", tags=["recipes"])
 
 
-RECIPES = [
-    {
-        "id": 1,
-        "label": "Chicken Vesuvio",
-        "instructions": ["add oil to pan", "toss dat chicken"],
-        "notes": ["better luck next time"],
-        # "ingredients": 
-        "tags": ["chicken", "parmosean"]
-    },
-    {
-        "id": 2,
-        "label": "Chicken Paprikash",
-        "instructions": ["add oil to pan", "toss dat chicken"],
-        "notes": ["better luck next time"],
-        # "ingredients": 
-        "tags": ["chicken", "parmosean"]
-    },
-    {
-        "id": 3,
-        "label": "Cauliflower and Tofu Curry Recipe",
-        "instructions": ["add oil to pan", "toss dat chicken"],
-        "notes": ["better luck next time"],
-        # "ingredients": 
-        "tags": ["chicken", "parmosean"]
-    },
-]
-
-
-class Recipe(BaseModel):
-    id: int
-    label: str
-    instructions: Sequence[str] 
-    notes: Sequence[str]
-    ingredient: Sequence[Ingredient]
-    tags: Sequence[Tag]
-
-
-class Recipes(BaseModel):
-    results: Sequence[Recipe] 
-
-
-class RecipeCreate(BaseModel):
-    label: str
-
-
 @api_router.get("/{recipe_id}", status_code=200, response_model=Recipe)
 def get_recipe(*, 
 recipe_id: int) -> dict: 
@@ -92,3 +47,31 @@ def create_recipe(*, recipe_in: RecipeCreate) -> dict:
     return recipe_entry
 
 
+
+if __name__ == "__main__":
+    MOCK_RECIPES = [
+        {
+            "id": 1,
+            "label": "Chicken Vesuvio",
+            "instructions": ["add oil to pan", "toss dat chicken"],
+            "notes": ["better luck next time"],
+            # "ingredients": 
+            "tags": ["chicken", "parmosean"]
+        },
+        {
+            "id": 2,
+            "label": "Chicken Paprikash",
+            "instructions": ["add oil to pan", "toss dat chicken"],
+            "notes": ["better luck next time"],
+            # "ingredients": 
+            "tags": ["chicken", "parmosean"]
+        },
+        {
+            "id": 3,
+            "label": "Cauliflower and Tofu Curry Recipe",
+            "instructions": ["add oil to pan", "toss dat chicken"],
+            "notes": ["better luck next time"],
+            # "ingredients": 
+            "tags": ["chicken", "parmosean"]
+        },
+    ]

@@ -4,23 +4,25 @@ from typing import Optional, Sequence
 
 api_router = APIRouter(prefix="/tags", tags=["tags"])
 
+# TODO: Get tags   GET /tags
+# TODO: Create     POST /tags/{name}
 
-TAGS = [
-    {
-        "id": 1,
-        "label": "chicken"
-        },
-    {
-        "id": 2,
-        "label": "beef"
-        },
-    {
-        "id": 3,
-        "label": "fish"
-        },
-]
+if __name__ == "__main__":
+    MOCK_TAGS = [
+        "instant pot",
+        "poultry",
+        "beef",
+        "fish",
+        "legumes",
+        "rice",
+        "grains",
+        "noodles",
+        "sauce",
+        "smoothie",
+        "oven",
+    ]
 
-
-class Tag(BaseModel):
-    id: int
-    label: str
+    for idx in range(len(MOCK_TAGS)):
+        print("----------------------------")
+        t = {"id": idx+1, "name": MOCK_TAGS[idx]}
+        print(Tag(**t))

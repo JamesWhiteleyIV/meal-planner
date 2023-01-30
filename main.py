@@ -12,14 +12,14 @@ app = FastAPI(
 import ingredient
 import recipe
 import tag
-import unit
+from unit import Units
 
 api_router = APIRouter()
 app.include_router(api_router)
 app.include_router(ingredient.api_router)
 app.include_router(recipe.api_router)
 app.include_router(tag.api_router)
-app.include_router(unit.api_router)
+
 
 @api_router.get("/", status_code=200)
 def root() -> dict:
