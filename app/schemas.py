@@ -1,6 +1,7 @@
 from pydantic import BaseModel, ValidationError
 from typing import Optional, Sequence
 
+# TAG
 
 class TagBase(BaseModel):
     name: str
@@ -16,6 +17,8 @@ class Tag(TagBase):
     class Config:
         orm_mode = True
 
+
+# INGREDIENT
 
 class IngredientBase(BaseModel):
     name: str
@@ -41,6 +44,8 @@ class Ingredient(IngredientBase):
     class Config:
         orm_mode = True
 
+
+# RECIPE
 
 class RecipeBase(BaseModel):
     name: str

@@ -63,3 +63,55 @@ def delete_ingredient(db: Session, ingredient_id: int):
         return True
     return False
 
+
+# RECIPE
+
+def create_recipe(db: Session, recipe: schemas.RecipeCreate):
+    db_recipe = models.Recipe(**recipe.dict())
+    db.add(db_recipe)
+    db.commit()
+    db.refresh(db_recipe)
+    return db_recipe
+
+
+'''
+def read_ingredients(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(models.Ingredient).offset(skip).limit(limit).all()
+
+'''
+
+def read_recipe_by_name(db: Session, name: str):
+    return db.query(models.Recipe).filter(models.Recipe.name == name).first()
+
+
+def add_tag_to_recipe(db: Session, recipe_id: int, tag_id: int):
+    db_recipe_tag = models.RecipeTag(recipe_id=recipe_id, tag_id=tag_id)
+    db.add(db_recipe_tag)
+    db.commit()
+    db.refresh(db_recipe_tag)
+    return db_recipe_tag
+
+
+# TODO:   
+# remove_tag_from_recipe
+# remove_ingredient_from_recipe
+
+'''
+
+def read_ingredient_by_id(db: Session, ingredient_id: int):
+    return db.query(models.Ingredient).filter(models.Ingredient.id == ingredient_id).first()
+
+
+def update_ingredient(db: Session, ingredient: schemas.IngredientCreate, ingredient_id: int):
+    db.execute(update(models.Ingredient).where(models.Ingredient.id == ingredient_id).values(**ingredient.dict()))
+    db.commit()
+    return read_ingredient_by_id(db, ingredient_id)
+
+
+def delete_ingredient(db: Session, ingredient_id: int):
+    result = db.execute(delete(models.Ingredient).where(models.Ingredient.id == ingredient_id))
+    db.commit()
+    if result.rowcount > 0:
+        return True
+    return False
+'''

@@ -45,6 +45,10 @@ class RecipeTag(Base):
     tag_id = Column(Integer, ForeignKey("tags.id"))
     UniqueConstraint('recipe_id', 'tag_id', name='recipe_id_tag_id')
 
+    recipe = relationship("Recipe", foreign_keys=[recipe_id])
+    tag = relationship("Tag", foreign_keys=[tag_id])
+
+
 
 class RecipeIngredient(Base):
     __tablename__ = "recipes_ingredients"
@@ -54,9 +58,8 @@ class RecipeIngredient(Base):
     ingredient_id = Column(Integer, ForeignKey("ingredients.id"))
     UniqueConstraint('recipe_id', 'ingredient_id', name='recipe_id_ingredient_id')
 
-
-
-
+    recipe = relationship("Recipe", foreign_keys=[recipe_id])
+    ingredient = relationship("Ingredient", foreign_keys=[ingredient_id])
 
 
 
