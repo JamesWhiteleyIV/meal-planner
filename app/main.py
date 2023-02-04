@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 import crud, models, schemas
 from database import SessionLocal, engine
 from unit import Unit
+import json
 
 
 app = FastAPI(
@@ -25,58 +26,16 @@ def setup():
     models.Base.metadata.drop_all(bind=engine)
     models.Base.metadata.create_all(bind=engine)
 
-    tag_names = [
-        "beef",
-        "fish",
-        "grains",
-        "instant pot",
-        "legumes",
-        "noodles",
-        "oven",
-        "poultry",
-        "rice",
-        "sauce",
-        "smoothie",
-    ]
+    with open("tags.json", 'r') as fp:
+        tag_names = json.loads(fp.read())
     for tag_name in tag_names:
         db_tag = crud.read_tag_by_name(db, name=tag_name)
         if db_tag:
             continue
         crud.create_tag(db=db, tag=schemas.TagCreate(name=tag_name))
 
-    ingredients = [
-    {
-        "name": "pinto beans",
-        "amount": 1,
-        "unit": "cup",
-        "calories_kcal": 245,
-        "protein_g": 15.4,
-        "carbohydrates_g": 44.8,
-        "fat_g": 1.1,
-        "saturated_fat_g": 0.2,
-        "potassium_mg": 746,
-        "fiber_g": 15.4,
-        "sodium_mg": 407,
-        "sugar_g": 0.6,
-        "cholesterol_mg": 0.0
-    },    
-    {
-        "name": "banana",
-        "amount": 1,
-        "unit": "cup",
-        "calories_kcal": 167,
-        "protein_g": 2.0,
-        "carbohydrates_g": 43,
-        "fat_g": 0.6,
-        "saturated_fat_g": 0.2,
-        "potassium_mg": 671,
-        "fiber_g": 4.9,
-        "sodium_mg": 1.9,
-        "sugar_g": 23,
-        "cholesterol_mg": 0 
-    }    
- 
-    ]
+    with open("ingredients.json", 'r') as fp:
+        ingredients = json.loads(fp.read())
     for ingredient in ingredients:
         ingredient = schemas.IngredientCreate(**ingredient)
         try:
@@ -91,8 +50,9 @@ def setup():
         crud.create_ingredient(db=db, ingredient=ingredient)
 
 
+    '''
     recipes = [
-        "banana bean bread"
+        "instant pot pinto beans"
     ]
     for recipe in recipes:
         recipe = schemas.RecipeCreate(name=recipe)
@@ -106,9 +66,7 @@ def setup():
         if db_recipe_tag:
             continue
         db_recipe_tag = crud.add_tag_to_recipe(db, recipe_id=db_recipe.id, tag_id=tag_id)
-        print(db_recipe_tag.recipe.__dict__)
-        print(db_recipe_tag.tag.__dict__)
-
+    '''
 
 
 setup()

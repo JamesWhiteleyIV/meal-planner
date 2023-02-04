@@ -1,0 +1,145 @@
+[
+{
+    "name": "filet mignon",
+    "amount": 3.5,
+    "unit": "oz",
+    "calories_kcal": 204,
+    "protein_g": 28.6,
+    "carbohydrates_g": 0.0,
+    "fat_g": 11.3,
+    "saturated_fat_g": 4.7,
+    "potassium_mg": 245,
+    "fiber_g": 0.0,
+    "sodium_mg": 64,
+    "sugar_g": 0.0,
+    "cholesterol_mg": 83.0
+},
+
+{
+    "name": "tri-tip",
+    "amount": 3.5,
+    "unit": "oz",
+    "calories_kcal": 235,
+    "protein_g": 29.6,
+    "carbohydrates_g": 0.0,
+    "fat_g": 13.0,
+    "saturated_fat_g": 5.0,
+    "potassium_mg": 305,
+    "fiber_g": 0.0,
+    "sodium_mg": 69,
+    "sugar_g": 0.0,
+    "cholesterol_mg": 81.0
+},
+
+{
+    "name": "flank steak",
+    "amount": 3.5,
+    "unit": "oz",
+    "calories_kcal": 196,
+    "protein_g": 26.8,
+    "carbohydrates_g": 0.0,
+    "fat_g": 9.5,
+    "saturated_fat_g": 3.7,
+    "potassium_mg": 295,
+    "fiber_g": 0.0,
+    "sodium_mg": 66,
+    "sugar_g": 0.0,
+    "cholesterol_mg": 63.0
+},
+
+{
+    "name": "rib-eye",
+    "amount": 3.5,
+    "unit": "oz",
+    "calories_kcal": 236,
+    "protein_g": 28.9,
+    "carbohydrates_g": 0.0,
+    "fat_g": 14.3,
+    "saturated_fat_g": 5.6,
+    "potassium_mg": 250,
+    "fiber_g": 0.0,
+    "sodium_mg": 65,
+    "sugar_g": 0.0,
+    "cholesterol_mg": 86.0
+},
+
+{
+    "name": "sirloin steak",
+    "amount": 3.5,
+    "unit": "oz",
+    "calories_kcal": 187,
+    "protein_g": 26.3,
+    "carbohydrates_g": 0.0,
+    "fat_g": 8.4,
+    "saturated_fat_g": 3.2,
+    "potassium_mg": 310,
+    "fiber_g": 0.0,
+    "sodium_mg": 65,
+    "sugar_g": 0.0,
+    "cholesterol_mg": 63.0
+},
+{
+    "name": "ground beef (73% lean, 27% fat)",
+    "amount": 3.5,
+    "unit": "oz",
+    "calories_kcal": 250,
+    "protein_g": 19.6,
+    "carbohydrates_g": 0.0,
+    "fat_g": 19.8,
+    "saturated_fat_g": 7.9,
+    "potassium_mg": 256,
+    "fiber_g": 0.0,
+    "sodium_mg": 69,
+    "sugar_g": 0.0,
+    "cholesterol_mg": 78.0
+},
+
+{
+    "name": "ground beef (80% lean, 20% fat)",
+    "amount": 3.5,
+    "unit": "oz",
+    "calories_kcal": 215,
+    "protein_g": 19.8,
+    "carbohydrates_g": 0.0,
+    "fat_g": 15.3,
+    "saturated_fat_g": 6.0,
+    "potassium_mg": 261,
+    "fiber_g": 0.0,
+    "sodium_mg": 68,
+    "sugar_g": 0.0,
+    "cholesterol_mg": 74.0
+},
+
+{
+    "name": "ground beef (85% lean, 15% fat)",
+    "amount": 3.5,
+    "unit": "oz",
+    "calories_kcal": 189,
+    "protein_g": 20.4,
+    "carbohydrates_g": 0.0,
+    "fat_g": 12.2,
+    "saturated_fat_g": 4.9,
+    "potassium_mg": 259,
+    "fiber_g": 0.0,
+    "sodium_mg": 68,
+    "sugar_g": 0.0,
+    "cholesterol_mg": 74.0
+},
+
+{
+    "name": "ground beef (90% lean, 10% fat)",
+    "amount": 3.5,
+    "unit": "oz",
+    "calories_kcal": 165,
+    "protein_g": 21.2,
+    "carbohydrates_g": 0.0,
+    "fat_g": 9.0,
+    "saturated_fat_g": 3.5,
+    "potassium_mg": 259,
+    "fiber_g": 0.0,
+    "sodium_mg": 68,
+    "sugar_g": 0.0,
+    "cholesterol_mg": 74.0
+}
+
+]

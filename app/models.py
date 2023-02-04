@@ -56,6 +56,8 @@ class RecipeIngredient(Base):
     id = Column(Integer, primary_key=True, index=True)
     recipe_id = Column(Integer, ForeignKey("recipes.id"))
     ingredient_id = Column(Integer, ForeignKey("ingredients.id"))
+    amount = Column(Float, index=True)
+    unit = Column(String, index=True)
     UniqueConstraint('recipe_id', 'ingredient_id', name='recipe_id_ingredient_id')
 
     recipe = relationship("Recipe", foreign_keys=[recipe_id])
