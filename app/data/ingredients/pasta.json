@@ -1,0 +1,81 @@
+[
+{
+    "name": "spaghetti",
+    "amount": 1,
+    "unit": "cup",
+    "calories_kcal": 221,
+    "protein_g": 8.1,
+    "carbohydrates_g": 43.8,
+    "fat_g": 1.3,
+    "saturated_fat_g": 0.3,
+    "potassium_mg": 69,
+    "fiber_g": 2.5,
+    "sodium_mg": 5,
+    "sugar_g": 2.0,
+    "cholesterol_mg": 0.0
+},
+
+{
+    "name": "penne",
+    "amount": 1,
+    "unit": "cup",
+    "calories_kcal": 200,
+    "protein_g": 7.8,
+    "carbohydrates_g": 41.4,
+    "fat_g": 1.2,
+    "saturated_fat_g": 0.2,
+    "potassium_mg": 66,
+    "fiber_g": 2.3,
+    "sodium_mg": 4,
+    "sugar_g": 1.8,
+    "cholesterol_mg": 0.0
+},
+
+{
+    "name": "fettuccine",
+    "amount": 1,
+    "unit": "cup",
+    "calories_kcal": 221,
+    "protein_g": 7.9,
+    "carbohydrates_g": 43.5,
+    "fat_g": 1.3,
+    "saturated_fat_g": 0.3,
+    "potassium_mg": 68,
+    "fiber_g": 2.5,
+    "sodium_mg": 5,
+    "sugar_g": 2.0,
+    "cholesterol_mg": 0.0
+},
+
+{
+    "name": "linguine",
+    "amount": 1,
+    "unit": "cup",
+    "calories_kcal": 220,
+    "protein_g": 8.0,
+    "carbohydrates_g": 43.3,
+    "fat_g": 1.3,
+    "saturated_fat_g": 0.3,
+    "potassium_mg": 68,
+    "fiber_g": 2.5,
+    "sodium_mg": 5,
+    "sugar_g": 2.0,
+    "cholesterol_mg": 0.0
+},
+
+{
+    "name": "elbow macaroni",
+    "amount": 1,
+    "unit": "cup",
+    "calories_kcal": 200,
+    "protein_g": 7.3,
+    "carbohydrates_g": 40.5,
+    "fat_g": 1.1,
+    "saturated_fat_g": 0.2,
+    "potassium_mg": 65,
+    "fiber_g": 2.2,
+    "sodium_mg": 4,
+    "sugar_g": 1.7,
+    "cholesterol_mg": 0.0
+}
+]

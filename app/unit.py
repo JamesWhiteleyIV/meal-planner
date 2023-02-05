@@ -57,6 +57,19 @@ class MassUnit(object):
         return round(self.__amount_in_g/ 453.59, 2)
 
 
+# e.g. 1 banana, 1 leaf, etc.
+class AmountUnit(object):
+
+    def __init__(self, label):
+        """
+        :param label: name of unit (e.g. leaf, banana, etc.)
+        """
+        self.__label = label
+
+    @property
+    def label(self):
+        return self.__label
+ 
 
 class Unit:
     MILLILITER = VolumeUnit("ml", 1.00)
@@ -90,6 +103,9 @@ class Unit:
             return cls.OUNCE
         elif label.lower() == "lb":
             return cls.POUND
+        
+        elif label.lower() in ("leaf",):
+            return AmountUnit(label.lower())
         
         raise ValueError(f"Unknown unit: '{label}'")
 

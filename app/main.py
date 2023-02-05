@@ -2,6 +2,7 @@
 # uvicorn main:app --reload
 
 from fastapi import FastAPI, Depends, HTTPException
+import os
 from sqlalchemy.orm import Session
 import crud, models, schemas
 from database import SessionLocal, engine
@@ -34,8 +35,12 @@ def setup():
             continue
         crud.create_tag(db=db, tag=schemas.TagCreate(name=tag_name))
 
-    with open("ingredients.json", 'r') as fp:
-        ingredients = json.loads(fp.read())
+    ingredients = []
+    for item in os.listdir('ingredients'):
+        if item.lower().endswith('.json'):
+            with open(item, 'r') as fp:
+                ingredients += json.loads(fp.read())
+ 
     for ingredient in ingredients:
         ingredient = schemas.IngredientCreate(**ingredient)
         try:

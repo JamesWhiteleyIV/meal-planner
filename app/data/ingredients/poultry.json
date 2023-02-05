@@ -73,5 +73,71 @@
         "sodium_mg": 70,
         "sugar_g": 0.0,
         "cholesterol_mg": 86.0
+    },
+
+    {
+        "name": "ground turkey (93% lean, 7% fat)",
+        "amount": 3.5,
+        "unit": "oz",
+        "calories_kcal": 140,
+        "protein_g": 23.6,
+        "carbohydrates_g": 0.0,
+        "fat_g": 5.6,
+        "saturated_fat_g": 1.7,
+        "potassium_mg": 249,
+        "fiber_g": 0.0,
+        "sodium_mg": 71,
+        "sugar_g": 0.0,
+        "cholesterol_mg": 73.0
+    },
+    
+    {
+        "name": "ground chicken (93% lean, 7% fat)",
+        "amount": 3.5,
+        "unit": "oz",
+        "calories_kcal": 140,
+        "protein_g": 24.0,
+        "carbohydrates_g": 0.0,
+        "fat_g": 5.5,
+        "saturated_fat_g": 1.5,
+        "potassium_mg": 259,
+        "fiber_g": 0.0,
+        "sodium_mg": 72,
+        "sugar_g": 0.0,
+        "cholesterol_mg": 75.0
+    },
+    
+    {
+        "name": "ground turkey (85% lean, 15% fat)",
+        "amount": 3.5,
+        "unit": "oz",
+        "calories_kcal": 170,
+        "protein_g": 22.0,
+        "carbohydrates_g": 0.0,
+        "fat_g": 11.0,
+        "saturated_fat_g": 2.9,
+        "potassium_mg": 246,
+        "fiber_g": 0.0,
+        "sodium_mg": 69,
+        "sugar_g": 0.0,
+        "cholesterol_mg": 70.0
+    },
+    
+    {
+        "name": "ground chicken (85% lean, 15% fat)",
+        "amount": 3.5,
+        "unit": "oz",
+        "calories_kcal": 170,
+        "protein_g": 22.4,
+        "carbohydrates_g": 0.0,
+        "fat_g": 10.9,
+        "saturated_fat_g": 2.7,
+        "potassium_mg": 256,
+        "fiber_g": 0.0,
+        "sodium_mg": 71,
+        "sugar_g": 0.0,
+        "cholesterol_mg": 72.0
     }
+    
+
 ]

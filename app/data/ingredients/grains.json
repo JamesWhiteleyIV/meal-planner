@@ -1,0 +1,47 @@
+[
+    {
+        "name": "whole wheat bread",
+        "amount": 100,
+        "unit": "g",
+        "calories_kcal": 239,
+        "protein_g": 9.9,
+        "carbohydrates_g": 47.7,
+        "fat_g": 3.1,
+        "saturated_fat_g": 0.6,
+        "potassium_mg": 168,
+        "fiber_g": 5.9,
+        "sodium_mg": 267,
+        "sugar_g": 4.2,
+        "cholesterol_mg": 0.0
+    },
+    {
+        "name": "white bread",
+        "amount": 100,
+        "unit": "g",
+        "calories_kcal": 265,
+        "protein_g": 9.4,
+        "carbohydrates_g": 52.6,
+        "fat_g": 2.9,
+        "saturated_fat_g": 0.7,
+        "potassium_mg": 107,
+        "fiber_g": 2.7,
+        "sodium_mg": 547,
+        "sugar_g": 5.2,
+        "cholesterol_mg": 0.0
+    },
+    {
+        "name": "sourdough bread",
+        "amount": 100,
+        "unit": "g",
+        "calories_kcal": 251,
+        "protein_g": 9.7,
+        "carbohydrates_g": 49.6,
+        "fat_g": 2.7,
+        "saturated_fat_g": 0.5,
+        "potassium_mg": 146,
+        "fiber_g": 3.1,
+        "sodium_mg": 571,
+        "sugar_g": 1.9,
+        "cholesterol_mg": 0.0
+    }
+]

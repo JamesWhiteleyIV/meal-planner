@@ -1,0 +1,62 @@
+[
+    {
+        "name": "pork tenderloin",
+        "amount": 3.5,
+        "unit": "oz",
+        "calories_kcal": 140,
+        "protein_g": 22.4,
+        "carbohydrates_g": 0.0,
+        "fat_g": 4.4,
+        "saturated_fat_g": 1.5,
+        "potassium_mg": 258,
+        "fiber_g": 0.0,
+        "sodium_mg": 72,
+        "sugar_g": 0.0,
+        "cholesterol_mg": 72.0
+    },
+    {
+        "name": "pork loin",
+        "amount": 3.5,
+        "unit": "oz",
+        "calories_kcal": 155,
+        "protein_g": 22.5,
+        "carbohydrates_g": 0.0,
+        "fat_g": 7.0,
+        "saturated_fat_g": 2.5,
+        "potassium_mg": 247,
+        "fiber_g": 0.0,
+        "sodium_mg": 69,
+        "sugar_g": 0.0,
+        "cholesterol_mg": 70.0
+    },
+    {
+        "name": "pork chops",
+        "amount": 3.5,
+        "unit": "oz",
+        "calories_kcal": 165,
+        "protein_g": 22.6,
+        "carbohydrates_g": 0.0,
+        "fat_g": 8.0,
+        "saturated_fat_g": 2.8,
+        "potassium_mg": 245,
+        "fiber_g": 0.0,
+        "sodium_mg": 68,
+        "sugar_g": 0.0,
+        "cholesterol_mg": 69.0
+    },
+    {
+        "name": "pork belly",
+        "amount": 3.5,
+        "unit": "oz",
+        "calories_kcal": 200,
+        "protein_g": 21.6,
+        "carbohydrates_g": 0.0,
+        "fat_g": 12.0,
+        "saturated_fat_g": 4.0,
+        "potassium_mg": 240,
+        "fiber_g": 0.0,
+        "sodium_mg": 65,
+        "sugar_g": 0.0,
+        "cholesterol_mg": 65.0
+    }
+]
