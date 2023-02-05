@@ -60,6 +60,36 @@
         "cholesterol_mg": 0.0
     },
     {
+        "name": "strawberries",
+        "amount": 1,
+        "unit": "cup",
+        "calories_kcal": 49,
+        "protein_g": 1.0,
+        "carbohydrates_g": 12.7,
+        "fat_g": 0.5,
+        "saturated_fat_g": 0.1,
+        "potassium_mg": 153,
+        "fiber_g": 2.0,
+        "sodium_mg": 1,
+        "sugar_g": 7.7,
+        "cholesterol_mg": 0.0
+    },
+    {
+        "name": "raspberries",
+        "amount": 1,
+        "unit": "cup",
+        "calories_kcal": 64,
+        "protein_g": 1.5,
+        "carbohydrates_g": 15.5,
+        "fat_g": 1.0,
+        "saturated_fat_g": 0.1,
+        "potassium_mg": 220,
+        "fiber_g": 8.0,
+        "sodium_mg": 2,
+        "sugar_g": 5.4,
+        "cholesterol_mg": 0.0
+    },
+    {
         "name": "cherries",
         "amount": 1,
         "unit": "cup",

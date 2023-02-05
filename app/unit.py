@@ -104,7 +104,7 @@ class Unit:
         elif label.lower() == "lb":
             return cls.POUND
         
-        elif label.lower() in ("leaf",):
+        elif label.lower() in ("leaf", "tortilla", "clove", ):
             return AmountUnit(label.lower())
         
         raise ValueError(f"Unknown unit: '{label}'")

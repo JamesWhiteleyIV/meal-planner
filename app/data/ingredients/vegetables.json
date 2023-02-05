@@ -360,5 +360,35 @@
         "sodium_mg": 11,
         "sugar_g": 7.8,
         "cholesterol_mg": 0.0
+    },
+    {
+        "name": "garlic",
+        "amount": 1,
+        "unit": "clove",
+        "calories_kcal": 4,
+        "protein_g": 0.2,
+        "carbohydrates_g": 1.0,
+        "fat_g": 0.0,
+        "saturated_fat_g": 0.0,
+        "potassium_mg": 24,
+        "fiber_g": 0.1,
+        "sodium_mg": 1,
+        "sugar_g": 0.0,
+        "cholesterol_mg": 0.0
+    },
+    {
+        "name": "cucumber",
+        "amount": 1,
+        "unit": "cup",
+        "calories_kcal": 16,
+        "protein_g": 0.8,
+        "carbohydrates_g": 4.0,
+        "fat_g": 0.2,
+        "saturated_fat_g": 0.0,
+        "potassium_mg": 147,
+        "fiber_g": 0.5,
+        "sodium_mg": 2,
+        "sugar_g": 1.7,
+        "cholesterol_mg": 0.0
     }
 ]
