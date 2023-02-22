@@ -12,5 +12,6 @@ Cargo.lock
 
 *.db
 
+/node_modules
 
 /__pycache__

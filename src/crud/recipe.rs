@@ -58,6 +58,20 @@ pub async fn read_by_tag_id(pool: &Pool<Sqlite>, tag_id: i64) -> Result<Vec<Reci
     Ok(recipes)
 }
 
+pub async fn read_by_search_string(
+    pool: &Pool<Sqlite>,
+    search_string: &str,
+) -> Result<Vec<RecipeSimple>> {
+    let recipes = sqlx::query_as::<_, RecipeSimple>(
+        r#"SELECT id, name FROM recipes WHERE name LIKE '%' || $1 || '%'"#,
+    )
+    .bind(search_string)
+    .fetch_all(pool)
+    .await?;
+
+    Ok(recipes)
+}
+
 pub async fn read_one(pool: &Pool<Sqlite>, recipe_id: i64) -> Result<Recipe> {
     let ingredients = get_recipe_ingredients(pool, recipe_id);
     let tags = get_recipe_tags(pool, recipe_id);
@@ -236,6 +250,27 @@ mod tests {
         create(&pool, "should_not_get_these3").await.unwrap();
 
         let recipes = read_by_tag_id(&pool, tag_id).await.unwrap();
+        assert_eq!(recipes.len(), 3);
+    }
+
+    #[tokio::test]
+    async fn test_search_string_query() {
+        let temp_file = NamedTempFile::new().unwrap();
+        let temp_filename = temp_file.path();
+        let pool = get_connection_pool(temp_filename.to_str().unwrap()).await;
+
+        crud::create_tables(&pool).await.unwrap();
+        crud::populate_tables(&pool).await.unwrap();
+
+        let search_string = "chicken";
+        create(&pool, "chicken_parma").await.unwrap();
+        create(&pool, "chicken").await.unwrap();
+        create(&pool, "crazy_chicken").await.unwrap();
+        create(&pool, "should_not_get_these1").await.unwrap();
+        create(&pool, "should_not_get_these2").await.unwrap();
+        create(&pool, "should_not_get_these3").await.unwrap();
+
+        let recipes = read_by_search_string(&pool, search_string).await.unwrap();
         assert_eq!(recipes.len(), 3);
     }
 }

@@ -146,6 +146,7 @@ pub async fn get_connection_pool(db_filename: &str) -> Pool<Sqlite> {
     .unwrap()
 }
 
+/*
 // TODO
 #[derive(FromRow, Serialize, Deserialize, Debug)]
 struct MealPlan {
@@ -177,10 +178,9 @@ fn create_grocery_list() {}
 
 fn read_grocery_lists() {}
 
-/*
 UnitConversion
 id (primary key)
 from_unit
 to_unit
 conversion_factor
-*/
+ */

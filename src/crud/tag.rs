@@ -29,6 +29,16 @@ pub async fn read(pool: &Pool<Sqlite>) -> Result<Vec<Tag>> {
     Ok(tags)
 }
 
+pub async fn read_by_search_string(pool: &Pool<Sqlite>, search_string: &str) -> Result<Vec<Tag>> {
+    let tags =
+        sqlx::query_as::<_, Tag>(r#"SELECT id, name FROM tags WHERE name LIKE '%' || $1 || '%'"#)
+            .bind(search_string)
+            .fetch_all(pool)
+            .await?;
+
+    Ok(tags)
+}
+
 pub async fn read_one(pool: &Pool<Sqlite>, id: i64) -> Result<Tag> {
     let tag = sqlx::query_as::<_, Tag>(
         r#"
@@ -50,23 +60,13 @@ mod tests {
     use tempfile::NamedTempFile;
 
     #[tokio::test]
-    async fn test_create_table() {
+    async fn test_create() {
         let temp_file = NamedTempFile::new().unwrap();
         let temp_filename = temp_file.path();
         let pool = get_connection_pool(temp_filename.to_str().unwrap()).await;
 
         crud::create_tables(&pool).await.unwrap();
-        let items = read(&pool).await.unwrap();
-        assert!(items.len() > 0);
-    }
-
-    #[tokio::test]
-    async fn test_crud() {
-        let temp_file = NamedTempFile::new().unwrap();
-        let temp_filename = temp_file.path();
-        let pool = get_connection_pool(temp_filename.to_str().unwrap()).await;
-
-        crud::create_tables(&pool).await.unwrap();
+        crud::populate_tables(&pool).await.unwrap();
 
         let tag = Tag {
             id: None,
@@ -76,5 +76,32 @@ mod tests {
         let tag = read_one(&pool, tag_id).await.unwrap();
         assert!(tag.id.is_some());
         assert_eq!(tag.name, "test_tag".to_string());
+    }
+
+    #[tokio::test]
+    async fn test_read() {
+        let temp_file = NamedTempFile::new().unwrap();
+        let temp_filename = temp_file.path();
+        let pool = get_connection_pool(temp_filename.to_str().unwrap()).await;
+
+        crud::create_tables(&pool).await.unwrap();
+        crud::populate_tables(&pool).await.unwrap();
+        let items = read(&pool).await.unwrap();
+        assert!(items.len() > 0);
+    }
+
+    #[tokio::test]
+    async fn test_search_string_query() {
+        let temp_file = NamedTempFile::new().unwrap();
+        let temp_filename = temp_file.path();
+        let pool = get_connection_pool(temp_filename.to_str().unwrap()).await;
+
+        crud::create_tables(&pool).await.unwrap();
+        crud::populate_tables(&pool).await.unwrap();
+
+        let search_string = "veg";
+        let tags = read_by_search_string(&pool, search_string).await.unwrap();
+        // vegan, vegetarian, vegetables
+        assert_eq!(tags.len(), 3);
     }
 }

@@ -1,6 +1,8 @@
 # meal-planner
 
-https://fastapi.tiangolo.com/tutorial/sql-databases/#__tabbed_4_2
-
-
- angel hair pasta
+```
+cd web-ui
+yarn build
+cd ..
+cargo run
+```
