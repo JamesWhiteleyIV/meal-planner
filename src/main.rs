@@ -3,7 +3,7 @@ use actix_web::{get, http::header::ContentType, App, HttpResponse, HttpServer, R
 
 mod crud;
 
-const DB_FILENAME: &str = "test.db";
+const DB_FILENAME: &str = "foodbuddy.db";
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
