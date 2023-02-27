@@ -5,12 +5,6 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-import FormControl from '@mui/material/FormControl';
-import Typography from '@mui/material/Typography';
-import { Box, styled, ThemeProvider, createTheme } from '@mui/system';
 import RecipeDetail from './RecipeDetail';
 
 
@@ -20,6 +14,13 @@ const recipes = [
   { id: 3, name: 'Chicken Curry', tags: ['dinner', 'indian'] },
   { id: 4, name: 'Avocado Toast', tags: ['breakfast', 'vegetarian'] },
 ];
+
+const recipe = { id: 1, name: 'Pancakes', tags: ['breakfast', 'brunch'], ingredients: ['ingredient1', 'ingredient2'], instructions: ["step 1", "step 2"]};
+
+const tags = [
+  { id: 1, name: 'breakfast'}, 
+  {id: 2, name: 'brunch'}, 
+  {id: 3, name: 'dinner'}]
 
 
 function RecipeList() {
@@ -32,7 +33,11 @@ function RecipeList() {
   };
 
   const handleTagFilterChange = (event, value) => {
-    setTagFilter(value);
+    if (value === null) {
+      setTagFilter('');
+    } else {
+      setTagFilter(value.name);
+    }
   };
 
   const handleRecipeClick = (recipe) => {
@@ -56,7 +61,7 @@ function RecipeList() {
   return (
     <div>
       {selectedRecipe ?
-        <RecipeDetail recipe={selectedRecipe} onBackClick={handleBackClick} /> :
+        <RecipeDetail recipe={recipe} onBackClick={handleBackClick} /> :
         <div>
       <Grid container spacing={2} alignItems="center">
         <Grid item xs={6}>
@@ -71,8 +76,8 @@ function RecipeList() {
 
         <Grid item xs={6}>
           <Autocomplete
-            options={['breakfast', 'brunch', 'dinner', 'italian', 'indian', 'vegetarian']}
-            getOptionLabel={(option) => option}
+            options={tags}
+            getOptionLabel={(option) => option.name}
             onChange={handleTagFilterChange}
             renderInput={(params) => (
               <TextField {...params} label="Filter by tag" variant="outlined" />
