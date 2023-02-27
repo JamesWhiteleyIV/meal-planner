@@ -17,7 +17,8 @@ import {
 
 const units = ['ml', 'oz', 'l']
 
-function IngredientsDialog({ ingredients, open, onCancel}) {
+
+function IngredientsDialog({ ingredients, open, onCancel, onAdd}) {
   const [filter, setFilter] = useState('');
 
   const handleFilterChange = (event) => {
@@ -61,13 +62,17 @@ function IngredientsDialog({ ingredients, open, onCancel}) {
             />
             <FormControl variant="outlined" style={{ marginRight: 16, width: 100 }}>
               <InputLabel>Unit</InputLabel>
-              <Select value={ingredient.unit} /*onChange={handleUnitChange(ingredient.id)}*/>
+              <Select value={ingredient.unit} >
                 {units.map((unit, index) => (
-                    <MenuItem value={unit}>{unit}</MenuItem>
+                    <MenuItem value={index}>{unit}</MenuItem>
                 ))}
               </Select>
             </FormControl>
             <span>{ingredient.name}</span>
+        <Button onClick={() => onAdd(ingredient)} color="primary">
+            Add
+        </Button>
+ 
           </Box>
         ))}
       </DialogContent>

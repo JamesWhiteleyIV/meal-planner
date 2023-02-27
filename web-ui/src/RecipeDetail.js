@@ -34,10 +34,16 @@ function RecipeDetail(props) {
         console.log("recipe:", recipe.id, "adding tags:", tags);
     };
 
+    const handleAddIngredient = (ingredient) => {
+        // TODO add ingredient to recipe here, refresh details
+        console.log("recipe:", recipe.id, "adding ingredient:", ingredient);
+    };
+
+
     return (
         <div>
             <TagsDialog open={tagsDialogOpen} tags={tags} onCancel={() => setTagsDialogOpen(false)} onAdd={handleAddTags} />
-            <IngredientsDialog open={ingredientsDialogOpen} ingredients={ingredients} onCancel={() => setIngredientsDialogOpen(false)} />
+            <IngredientsDialog open={ingredientsDialogOpen} ingredients={ingredients} onCancel={() => setIngredientsDialogOpen(false)} onAdd={handleAddIngredient}/>
             <Typography variant="h4" gutterBottom>
                 {recipe.name}
             </Typography>
