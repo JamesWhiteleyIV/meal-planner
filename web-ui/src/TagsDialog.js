@@ -9,7 +9,7 @@ import {
   DialogActions,
 } from '@mui/material';
 
-function TagsDialog({ open, tags, onCancel, onAdd }) {
+function TagsDialog({ tags, open, onCancel, onAdd }) {
   const [selectedTags, setSelectedTags] = useState([]);
 
   const handleToggleTag = (tag) => {
@@ -20,7 +20,7 @@ function TagsDialog({ open, tags, onCancel, onAdd }) {
     }
   };
 
-  const handleCancel = () => {
+  const handleClose = () => {
     setSelectedTags([]);
     onCancel();
   };
@@ -32,7 +32,7 @@ function TagsDialog({ open, tags, onCancel, onAdd }) {
 
 
   return (
-    <Dialog open={open} onClose={handleCancel}>
+    <Dialog open={open} onClose={handleClose}>
       <DialogTitle>Choose tags</DialogTitle>
       <DialogContent>
         <Box display="flex" flexWrap="wrap" justifyContent="flex-start">
@@ -48,7 +48,7 @@ function TagsDialog({ open, tags, onCancel, onAdd }) {
         </Box>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleCancel} color="secondary">
+        <Button onClick={handleClose} color="secondary">
           Cancel
         </Button>
         <Button onClick={handleAdd} color="primary" disabled={!selectedTags.length}>

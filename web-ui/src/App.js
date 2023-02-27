@@ -1,8 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import Box from '@mui/material/Box';
 import RecipeList  from './RecipeList';
 
+/*
 function test() {
   fetch('/recipes')
   .then(response => response.json())
@@ -12,6 +12,7 @@ function test() {
   })
   .catch(error => console.error(error));
 }
+*/
 
 function App() {
   return (

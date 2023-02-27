@@ -3,36 +3,41 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import TagsDialog from './TagsDialog';
+import IngredientsDialog from './IngredientsDialog';
 
 const tags = [
-    { id: 1, name: 'breakfast'}, 
-    {id: 2, name: 'brunch'}, 
-    {id: 3, name: 'dinner'}]
-  
-  
+    { id: 1, name: 'breakfast' },
+    { id: 2, name: 'brunch' },
+    { id: 3, name: 'dinner' }]
+
+const ingredients = [
+    { id: 1, name: 'beef' },
+    { id: 2, name: 'chicken' },
+    { id: 3, name: 'halibut' }
+]
 
 function RecipeDetail(props) {
     const { recipe, onBackClick } = props;
     const [tagsDialogOpen, setTagsDialogOpen] = useState(false);
+    const [ingredientsDialogOpen, setIngredientsDialogOpen] = useState(false);
 
-    /*
     const handleAddIngredientClick = () => {
-        recipe.ingredients.push(newIngredient);
-        setNewIngredient('');
+        setIngredientsDialogOpen(true);
     };
-    */
 
     const handleAddTagClick = () => {
         setTagsDialogOpen(true);
     };
 
     const handleAddTags = (tags) => {
-        console.log(tags);
+        // TODO add tags to recipe here, refresh details
+        console.log("recipe:", recipe.id, "adding tags:", tags);
     };
 
     return (
         <div>
-            <TagsDialog open={tagsDialogOpen} tags={tags} onCancel={()=>setTagsDialogOpen(false)} onAdd={handleAddTags}/>
+            <TagsDialog open={tagsDialogOpen} tags={tags} onCancel={() => setTagsDialogOpen(false)} onAdd={handleAddTags} />
+            <IngredientsDialog open={ingredientsDialogOpen} ingredients={ingredients} onCancel={() => setIngredientsDialogOpen(false)} />
             <Typography variant="h4" gutterBottom>
                 {recipe.name}
             </Typography>
@@ -75,9 +80,9 @@ function RecipeDetail(props) {
                         Back
                     </Button>
                 </Grid>
- 
+
                 <Grid item>
-                    <Button variant="contained" color="primary" onClick={console.log("1")}>
+                    <Button variant="contained" color="primary" onClick={handleAddIngredientClick}>
                         Add Ingredient
                     </Button>
                 </Grid>
@@ -87,7 +92,7 @@ function RecipeDetail(props) {
                     </Button>
                 </Grid>
             </Grid>
- 
+
         </div>
     );
 }
